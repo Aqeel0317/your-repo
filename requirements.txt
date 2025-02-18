@@ -9,3 +9,4 @@ itsdangerous==2.2.0
 requests==2.32.3
 PyJWT==2.10.1
 psycopg2-binary==2.9.10
+gunicorn==23.0.0 # Example version, you can adjust if needed
