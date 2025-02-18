@@ -48,10 +48,28 @@
             <label for="confirm_password" class="form-label">Confirm Password</label>
             <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
           </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" id="showPassword" class="form-check-input" onclick="togglePassword()">
+            <label class="form-check-label" for="showPassword">Show Password</label>
+          </div>
           <button type="submit" class="btn btn-primary w-100">Sign Up</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  function togglePassword() {
+    let password = document.getElementById("password");
+    let confirmPassword = document.getElementById("confirm_password");
+    if (password.type === "password") {
+      password.type = "text";
+      confirmPassword.type = "text";
+    } else {
+      password.type = "password";
+      confirmPassword.type = "password";
+    }
+  }
+</script>
 {% endblock %}
