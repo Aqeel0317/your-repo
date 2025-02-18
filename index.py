@@ -29,8 +29,8 @@ for key, value in config_data.items():
 
 
 # If Railway provides DATABASE_URL, use it instead of the SQLite URI.
-if os.environ.get('postgresql://postgres:BPJmFRPAUgJzQowHYIDBLheXHaBQSwAU@shuttle.proxy.rlwy.net:23618/railway'):
-    database_url = os.environ['postgresql://postgres:BPJmFRPAUgJzQowHYIDBLheXHaBQSwAU@shuttle.proxy.rlwy.net:23618/railway']
+if os.environ.get('DATABASE_URL'):
+    database_url = os.environ['DATABASE_URL']
     # Railway may use the prefix "postgres://", but SQLAlchemy requires "postgresql://"
     if database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)
@@ -668,6 +668,9 @@ def admin_therapysignup_detail(signup_id):
 # --------------------------
 # New Route: Delete User (Admin Only)
 # --------------------------
+# --------------------------
+# Modified Delete User Route (Admin Only)
+# --------------------------
 @app.route('/admin/delete_user/<int:user_id>', methods=['POST'])
 @login_required
 @admin_required
@@ -678,17 +681,28 @@ def delete_user(user_id):
         flash("Admin users cannot be deleted.", "danger")
         return redirect(url_for('admin_dashboard'))
     
-    # Check if the user has appointments
-    if user.appointments_as_patient or user.appointments_as_psychologist:
-        flash("User cannot be deleted because they have associated appointments.", "danger")
-        return redirect(url_for('admin_dashboard'))
-    
+    # Removed the check for associated appointments so that admin can delete the user.
+    # Delete the user profile if it exists.
     if user.profile:
         db.session.delete(user.profile)
+    # Deleting the user will cascade delete associated appointments due to the cascade settings.
     db.session.delete(user)
     db.session.commit()
     flash("User deleted successfully", "success")
     return redirect(url_for('admin_dashboard'))
+
+# --------------------------
+# New Route: Delete Meeting (Admin Only)
+# --------------------------
+@app.route('/admin/delete_meeting/<int:appointment_id>', methods=['POST'])
+@login_required
+@admin_required
+def delete_meeting(appointment_id):
+    appointment = Appointment.query.get_or_404(appointment_id)
+    db.session.delete(appointment)
+    db.session.commit()
+    flash("Meeting deleted successfully", "success")
+    return redirect(url_for('scheduled_meetings'))
 
 # --------------------------
 # Run the App
