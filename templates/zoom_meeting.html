@@ -4,14 +4,22 @@
 
 {% block head %}
   <!-- Additional head content for Zoom Meeting -->
-  <!-- Import Zoom Web SDK CSS -->
   <link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.13.0/css/bootstrap.css" />
   <link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.13.0/css/react-select.css" />
   <style>
-    /* Customize the meeting container to be responsive */
+    /* Hide the navbar for the Zoom meeting page */
+    .navbar {
+      display: none;
+    }
+    /* Make the Zoom meeting container full screen */
     #zmmtg-root {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
       height: 100vh;
-      width: 100%;
+      z-index: 1000;
+      background-color: #f8f9fa;
     }
   </style>
 {% endblock %}
@@ -28,17 +36,18 @@
   <script src="https://source.zoom.us/2.13.0/lib/vendor/redux-thunk.min.js"></script>
   <script src="https://source.zoom.us/2.13.0/lib/vendor/lodash.min.js"></script>
   <script src="https://source.zoom.us/2.13.0/zoom-meeting-2.13.0.min.js"></script>
+  
   <script>
-    // Set the location of the Zoom Web SDK assets
+    // Set the location of Zoom Web SDK assets
     ZoomMtg.setZoomJSLib('https://source.zoom.us/2.13.0/lib', '/av');
     ZoomMtg.preLoadWasm();
     ZoomMtg.prepareJssdk();
 
-    // Meeting configuration passed from Flask
+    // Meeting configuration (variables passed from Flask)
     var meetConfig = {
-      apiKey: "{{ api_key }}",
+      clientId: "{{ client_id }}",   // Using your client_id in place of an API key
       meetingNumber: "{{ meeting_number }}",
-      userName: "{{ current_user.email }}",  // Customize as needed
+      userName: "{{ current_user.email }}",
       passWord: "{{ meeting_password }}",
       signature: "{{ signature }}",
       userEmail: "{{ current_user.email }}"
@@ -48,12 +57,12 @@
     ZoomMtg.init({
       leaveUrl: "{{ url_for('dashboard', _external=True) }}",
       isSupportAV: true,
-      success: function () {
+      success: function() {
         ZoomMtg.join({
           signature: meetConfig.signature,
           meetingNumber: meetConfig.meetingNumber,
           userName: meetConfig.userName,
-          apiKey: meetConfig.apiKey,
+          apiKey: meetConfig.clientId,  // Use your client_id as the API key substitute
           passWord: meetConfig.passWord,
           userEmail: meetConfig.userEmail,
           success: function(res) {
