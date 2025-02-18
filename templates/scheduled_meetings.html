@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Scheduled Meetings</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <style>
+    body {
+      padding-top: 20px;
+      background-color: #f8f9fa;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background-color: #2c3e50 !important;
+    }
+    .navbar-brand, .nav-link {
+      color: white !important;
+      font-weight: bold;
+    }
+    .nav-link:hover {
+      color: #f39c12 !important;
+    }
+
+    /* Container Styling */
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="{{ url_for('home') }}">Therapy Services</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a href="{{ url_for('therapy_signup') }}" class="nav-link">Sign Up</a></li>
+        {% if current_user.is_authenticated %}
+          <li class="nav-item"><a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+        {% else %}
+          <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <h1 class="mb-4">Scheduled Meetings</h1>
+    {% if appointments %}
+      <table class="table table-bordered table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th>ID</th>
+            <th>Patient</th>
+            <th>Psychologist</th>
+            <th>Appointment Date/Time</th>
+            <th>Join Meeting</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for appointment in appointments %}
+          <tr>
+            <td>{{ appointment.id }}</td>
+            <td>{{ appointment.patient.email }}</td>
+            <td>{{ appointment.psychologist.email }}</td>
+            <td>{{ appointment.appointment_datetime.strftime('%Y-%m-%d %H:%M') }}</td>
+            <td>
+              <a href="{{ url_for('admin_zoom_meeting', appointment_id=appointment.id) }}" class="btn btn-primary">
+                Join Meeting
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <div class="alert alert-info">No scheduled meetings found.</div>
+    {% endif %}
+  </div>
+
+</body>
+</html>

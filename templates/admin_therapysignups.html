@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Therapy Sign-Ups - Admin</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+  </nav>
+  <div class="container mt-4">
+    <h2>Therapy Service Sign-Ups</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>First &amp; Last Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Phone Number</th>
+          <th>Assigned Volunteer</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for signup in signups %}
+        <tr>
+          <td>{{ signup.first_name }} {{ signup.last_name }}</td>
+          <td>{{ current_year - signup.date_of_birth.year }}
+        </td>
+          <td>{{ signup.gender }}</td>
+          <td>{{ signup.phone_number }}</td>
+          <td>{{ signup.assigned_volunteer or "None" }}</td>
+          <td>
+            <a href="{{ url_for('admin_therapysignup_detail', signup_id=signup.id) }}" class="btn btn-sm btn-primary">View / Edit</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

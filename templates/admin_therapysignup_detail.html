@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Therapy Sign-Up Detail - Admin</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a>
+  </nav>
+  <div class="container mt-4">
+    <h2>Therapy Sign-Up Detail</h2>
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ signup.first_name }} {{ signup.last_name }}</h5>
+        <p class="card-text"><strong>Gender:</strong> {{ signup.gender }}</p>
+        <p class="card-text"><strong>Date of Birth:</strong> {{ signup.date_of_birth }}</p>
+        <p class="card-text"><strong>Email:</strong> {{ signup.email }}</p>
+        <p class="card-text"><strong>Phone Number:</strong> {{ signup.phone_number }}</p>
+        <p class="card-text"><strong>Reason for Therapy:</strong> {{ signup.reason }}</p>
+      </div>
+    </div>
+    <form method="POST" action="{{ url_for('admin_therapysignup_detail', signup_id=signup.id) }}">
+      <div class="form-group">
+        <label for="intake_notes">Intake Notes</label>
+        <textarea name="intake_notes" id="intake_notes" class="form-control" rows="4">{{ signup.intake_notes }}</textarea>
+      </div>
+      <div class="form-group">
+        <label for="assigned_volunteer">Assigned Volunteer</label>
+        <input type="text" name="assigned_volunteer" id="assigned_volunteer" class="form-control" value="{{ signup.assigned_volunteer }}">
+      </div>
+      <div class="form-group">
+        <label for="first_session_date">First Session Date (YYYY-MM-DD)</label>
+        <input type="date" name="first_session_date" id="first_session_date" class="form-control" value="{{ signup.first_session_date }}">
+      </div>
+      <div class="form-group">
+        <label for="first_session_time">First Session Time (HH:MM in 24-hour format)</label>
+        <input type="time" name="first_session_time" id="first_session_time" class="form-control" value="{{ signup.first_session_time }}">
+      </div>
+      <button type="submit" class="btn btn-primary">Update Details</button>
+    </form>
+  </div>
+</body>
+</html>

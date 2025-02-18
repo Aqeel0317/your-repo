@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Home - Therapy Services</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f8fb;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+    }
+    /* Navbar */
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
+    .navbar-brand {
+      font-weight: 600;
+      color: #2c3e50 !important;
+    }
+    .nav-link {
+      color: #2c3e50 !important;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-link:hover {
+      color: #1abc9c !important;
+    }
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x600') center center no-repeat;
+      background-size: cover;
+      padding: 150px 0;
+      text-align: center;
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+    }
+    .hero .btn {
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      background-color: #1abc9c;
+      border: none;
+      transition: background-color 0.3s;
+    }
+    .hero .btn:hover {
+      background-color: #16a085;
+    }
+    /* Section Styling */
+    .section {
+      padding: 60px 0;
+    }
+    .section h2 {
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #2c3e50;
+    }
+    .section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      text-align: center;
+      color: #555;
+    }
+    /* Team Section */
+    .team-member {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .team-member img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .team-member img:hover {
+      transform: scale(1.05);
+    }
+    .team-member h5 {
+      margin-top: 15px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+    .team-member p {
+      color: #777;
+    }
+    /* Footer */
+    footer {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 20px 0;
+    }
+    footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="{{ url_for('home') }}">Therapy Services</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('scheduled_meetings') }}">Meetings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('therapy_signup') }}">Sign Up</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="container">
+      <h1>Welcome to Therapy Services</h1>
+      <p>Your journey to healing and well-being starts here.</p>
+      {% if not current_user.is_authenticated %}
+        <a href="{{ url_for('therapy_signup') }}" class="btn btn-lg">Get Started</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container section">
+    <!-- About Us Section -->
+    <section id="about-us" class="mb-5">
+      <h2>About Us</h2>
+      <p>We are dedicated to providing quality therapy services to help you overcome life's challenges. Our experienced team is here to support you every step of the way.</p>
+    </section>
+
+    <!-- Why Section -->
+    <section id="why" class="mb-5">
+      <h2>Why Choose Us?</h2>
+      <p>Our holistic approach ensures personalized care tailored to your unique needs. We empower you to achieve lasting positive change.</p>
+    </section>
+
+    <!-- Sign Up Section -->
+    <section id="sign-up" class="mb-5">
+      <h2>Sign Up Today</h2>
+      <p>If you're interested in our therapy services, <a href="{{ url_for('therapy_signup') }}">click here to sign up</a> and take the first step towards a better tomorrow.</p>
+    </section>
+
+    <!-- The Team Section -->
+    <section id="the-team" class="mb-5">
+      <h2>Meet The Team</h2>
+      <div class="row">
+        <!-- Team Member 1 -->
+        <div class="col-md-4 team-member">
+          <img src="https://via.placeholder.com/150" alt="Jane Doe">
+          <h5>Jane Doe</h5>
+          <p>Licensed Therapist</p>
+        </div>
+        <!-- Team Member 2 -->
+        <div class="col-md-4 team-member">
+          <img src="https://via.placeholder.com/150" alt="John Smith">
+          <h5>John Smith</h5>
+          <p>Clinical Psychologist</p>
+        </div>
+        <!-- Team Member 3 -->
+        <div class="col-md-4 team-member">
+          <img src="https://via.placeholder.com/150" alt="Emily Johnson">
+          <h5>Emily Johnson</h5>
+          <p>Wellness Coach</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Us Section -->
+    <section id="contact-us" class="mb-5">
+      <h2>Contact Us</h2>
+      <p>Have questions or need assistance? Reach out to us:</p>
+      <ul class="list-unstyled text-center">
+        <li>Email: info@example.com</li>
+        <li>Phone: 123-456-7890</li>
+        <li>Address: 123 Wellness Blvd, Suite 100</li>
+      </ul>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p>&copy; {{ now().year }} Therapy Services. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

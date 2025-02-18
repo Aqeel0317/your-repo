@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Zoom Meeting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Import Zoom Web SDK CSS -->
+  <link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.13.0/css/bootstrap.css" />
+  <link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.13.0/css/react-select.css" />
+  <style>
+    /* Optional: customize the meeting container */
+    #zmmtg-root {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="zmmtg-root"></div>
+  <!-- Import Zoom Web SDK libraries -->
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/react.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/react-dom.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/redux.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/redux-thunk.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/lodash.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/zoom-meeting-2.13.0.min.js"></script>
+  <script>
+    // Set the location of the Zoom Web SDK assets
+    ZoomMtg.setZoomJSLib('https://source.zoom.us/2.13.0/lib', '/av');
+    ZoomMtg.preLoadWasm();
+    ZoomMtg.prepareJssdk();
+
+    // Meeting configuration passed from Flask
+    var meetConfig = {
+      apiKey: "{{ api_key }}",
+      meetingNumber: "{{ meeting_number }}",
+      userName: "{{ current_user.email }}",  // You can change this as needed
+      passWord: "{{ meeting_password }}",
+      signature: "{{ signature }}",
+      // Optionally, you can add more config such as userEmail
+      userEmail: "{{ current_user.email }}"
+    };
+
+    // Initialize and join the Zoom meeting
+    ZoomMtg.init({
+      leaveUrl: "{{ url_for('dashboard', _external=True) }}",
+      isSupportAV: true,
+      success: function () {
+        ZoomMtg.join({
+          signature: meetConfig.signature,
+          meetingNumber: meetConfig.meetingNumber,
+          userName: meetConfig.userName,
+          apiKey: meetConfig.apiKey,
+          passWord: meetConfig.passWord,
+          userEmail: meetConfig.userEmail,
+          success: function(res) {
+            console.log('Join meeting success');
+          },
+          error: function(res) {
+            console.error(res);
+          }
+        });
+      },
+      error: function(res) {
+        console.error(res);
+      }
+    });
+  </script>
+</body>
+</html>

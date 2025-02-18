@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <h2 class="mb-4">Patient Profile</h2>
+    <form method="POST">
+      <div class="mb-3">
+        <label class="form-label" for="full_name">Full Name</label>
+        <input type="text" class="form-control" name="full_name"
+               placeholder="Your Full Name" value="{{ profile.full_name if profile else '' }}" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="contact_number">Contact Number</label>
+        <input type="text" class="form-control" name="contact_number"
+               placeholder="Contact Number" value="{{ profile.contact_number if profile else '' }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="address">Address</label>
+        <input type="text" class="form-control" name="address"
+               placeholder="Address" value="{{ profile.address if profile else '' }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="trauma_details">Trauma Details</label>
+        <textarea class="form-control" name="trauma_details" rows="5"
+                  placeholder="Describe your trauma details here...">{{ profile.trauma_details if profile else '' }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Update Profile</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

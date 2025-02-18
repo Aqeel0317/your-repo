@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+  <h2 class="mb-4">Admin Dashboard</h2>
+
+  <!-- Patients Section -->
+  <h3>Patients</h3>
+  {% if patients %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for patient in patients %}
+        <tr>
+          <td>{{ patient.id }}</td>
+          <td>{{ patient.email }}</td>
+          <td>
+            <a href="{{ url_for('assign_patient', patient_id=patient.id) }}" class="btn btn-sm btn-primary">Assign Appointment</a>
+            <!-- Delete Patient Form -->
+            <form action="{{ url_for('delete_user', user_id=patient.id) }}" method="post" style="display:inline;">
+              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No patients registered.</p>
+  {% endif %}
+
+  <!-- Psychologists Section -->
+  <h3 class="mt-5">Psychologists</h3>
+  {% if psychologists %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for psychologist in psychologists %}
+        <tr>
+          <td>{{ psychologist.id }}</td>
+          <td>{{ psychologist.email }}</td>
+          <td>
+            <!-- Delete Psychologist Form -->
+            <form action="{{ url_for('delete_user', user_id=psychologist.id) }}" method="post" style="display:inline;">
+              <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No psychologists available.</p>
+  {% endif %}
+
+  <!-- Therapy Sign-Ups Section -->
+  <h3 class="mt-5">Therapy Sign-Ups</h3>
+  <div class="mb-3">
+    <a href="{{ url_for('admin_therapysignups') }}" class="btn btn-info">View Therapy Sign-Ups</a>
+  </div>
+
+  <!-- Add Users -->
+  <div class="mt-4">
+    <a href="{{ url_for('add_approved_user') }}" class="btn btn-secondary me-2">Add Approved User</a>
+    <a href="{{ url_for('add_psychologist') }}" class="btn btn-secondary">Add Psychologist</a>
+  </div>
+</div>
+{% endblock %}

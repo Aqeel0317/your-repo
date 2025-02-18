@@ -1,0 +1,16 @@
+{
+    "SECRET_KEY": "your-secret-key-here",
+    "SQLALCHEMY_DATABASE_URI": "sqlite:///database.db",
+    "MAIL_SERVER": "smtp.gmail.com",
+    "MAIL_PORT": 587,
+    "MAIL_USE_TLS": true,
+    "ZOOM_CLIENT_ID": "VxIYpjX9S1oNOvfLdk3Q",
+    "ZOOM_CLIENT_SECRET": "RjIBWYxksyLkqTsQHnvpJc2jLXae6gNE",
+    "ZOOM_ACCOUNT_ID": "Gfg_ELlMQumHPj5jaBBwNw",
+    "MAIL_USERNAME": "aqeel03319384502@gmail.com",
+    "MAIL_PASSWORD": "pxgu fegj sszo btde",
+    "SECURITY_PASSWORD_SALT": "your-security-salt",
+    "DEFAULT_ADMIN_EMAIL": "aqee03179454182@gmail.com",
+    "DEFAULT_ADMIN_PASSWORD": "admin123"
+  }
+  

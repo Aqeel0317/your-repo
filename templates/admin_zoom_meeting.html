@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Join Zoom Meeting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Bootstrap & Zoom Web SDK CSS -->
+  <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.13.0/css/bootstrap.css" />
+  <link type="text/css" rel="stylesheet" href="https://source.zoom.us/2.13.0/css/react-select.css" />
+  
+  <style>
+    /* Fullscreen Zoom Meeting */
+    #zmmtg-root {
+      height: 100vh;
+      width: 100%;
+      background-color: #f8f9fa;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      background-color: #2c3e50 !important;
+    }
+    .navbar-brand, .nav-link {
+      color: white !important;
+      font-weight: bold;
+    }
+    .nav-link:hover {
+      color: #f39c12 !important;
+    }
+
+    /* Meeting Container */
+    .meeting-container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Meeting Header */
+    .meeting-header {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="{{ url_for('home') }}">Therapy Services</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a href="{{ url_for('therapy_signup') }}" class="nav-link">Sign Up</a></li>
+        {% if current_user.is_authenticated %}
+          <li class="nav-item"><a href="{{ url_for('dashboard') }}" class="nav-link">Dashboard</a></li>
+          <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
+        {% else %}
+          <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Meeting Container -->
+  <div id="zmmtg-root"></div>
+
+  <!-- Zoom Web SDK Libraries -->
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/react.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/react-dom.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/redux.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/redux-thunk.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/lib/vendor/lodash.min.js"></script>
+  <script src="https://source.zoom.us/2.13.0/zoom-meeting-2.13.0.min.js"></script>
+
+  <script>
+    // Set the location of Zoom Web SDK assets
+    ZoomMtg.setZoomJSLib('https://source.zoom.us/2.13.0/lib', '/av');
+    ZoomMtg.preLoadWasm();
+    ZoomMtg.prepareJssdk();
+
+    // Meeting configuration (variables passed from Flask)
+    var meetConfig = {
+      clientId: "{{ client_id }}",   // Using your client_id in place of an API key
+      meetingNumber: "{{ meeting_number }}",
+      userName: "{{ current_user.email }}",
+      passWord: "{{ meeting_password }}",
+      signature: "{{ signature }}",
+      userEmail: "{{ current_user.email }}"
+    };
+
+    // Initialize and join the Zoom meeting
+    ZoomMtg.init({
+      leaveUrl: "{{ url_for('scheduled_meetings', _external=True) }}",
+      isSupportAV: true,
+      success: function() {
+        ZoomMtg.join({
+          signature: meetConfig.signature,
+          meetingNumber: meetConfig.meetingNumber,
+          userName: meetConfig.userName,
+          apiKey: meetConfig.clientId,  // Use your client_id as the API key substitute
+          passWord: meetConfig.passWord,
+          userEmail: meetConfig.userEmail,
+          success: function(res) {
+            console.log('Join meeting success');
+          },
+          error: function(res) {
+            console.error(res);
+          }
+        });
+      },
+      error: function(res) {
+        console.error(res);
+      }
+    });
+  </script>
+
+</body>
+</html>

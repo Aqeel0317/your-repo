@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Your Appointments{% endblock %}
+{% block content %}
+<h2 class="mb-4">Your Appointments</h2>
+
+{% if appointments %}
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Date/Time</th>
+        <th>Zoom Link</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appt in appointments %}
+      <tr>
+        <td>{{ appt.id }}</td>
+        <td>{{ appt.appointment_datetime.strftime('%Y-%m-%d %H:%M') }}</td>
+        <td>
+          <a href="{{ appt.zoom_link }}" target="_blank">Join Meeting</a>
+        </td>
+        <td>{{ appt.status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+  <p>You have no appointments scheduled.</p>
+{% endif %}
+{% endblock %}
