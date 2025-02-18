@@ -36,13 +36,13 @@
       background: #0056b3;
     }
 
-    .container {
+    .containner {
       width: 80%;
       margin: auto;
       padding: 40px 0;
     }
 
-    .section {
+    .sectionn {
       padding: 60px 15px;
       opacity: 0;
       transform: translateY(20px);
@@ -85,15 +85,15 @@
     {% endif %}
   </div>
 
-  <div class="container">
-    <section class="section" id="about-us">
+  <div class="containner">
+    <section class="sectionn" id="about-us">
       <div class="feature-card">
         <h2>About Us</h2>
         <p>We are dedicated to providing quality therapy services to help you overcome life's challenges.</p>
       </div>
     </section>
 
-    <section class="section" id="why">
+    <section class="sectionn" id="why">
       <h2>Why Choose Us?</h2>
       <div class="feature-card">
         <h3>Personalized Care</h3>
@@ -109,7 +109,7 @@
       </div>
     </section>
 
-    <section class="section" id="the-team">
+    <section class="sectionn" id="the-team">
       <h2>Meet The Team</h2>
       <div class="team-member">
         <img src="https://via.placeholder.com/150" alt="Jane Doe">
@@ -131,7 +131,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.section');
+      const sections = document.querySelectorAll('.sectionn');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
