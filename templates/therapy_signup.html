@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Therapy Sign Up</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
-<body>
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url_for('home') }}">Therapy Services</a>
-  </nav>
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+
   <div class="container mt-4">
     <h2>Therapy Service Sign Up</h2>
     <form method="POST" action="{{ url_for('therapy_signup') }}">
