@@ -1,192 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Home - Therapy Services</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-   body, html {
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f8fb;
-      color: #333;
-    }
-    a {
-      text-decoration: none;
-    }
-    .navbar {
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    }
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x600') center center no-repeat;
-      background-size: cover;
-      padding: 100px 20px;
-      text-align: center;
-      color: #fff;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-    }
-    .hero p {
-      font-size: 1.2rem;
-    }
-    .hero .btn {
-      padding: 10px 25px;
-      font-size: 1rem;
-    }
-    .section {
-      padding: 50px 15px;
-    }
-    .team-member img {
-      width: 120px;
-      height: 120px;
-    }
-    footer {
-      padding: 15px 0;
-    }
-    
-    /* Responsive Design */
-    @media (max-width: 992px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .hero .btn {
-        font-size: 0.9rem;
-      }
-      .team-member img {
-        width: 100px;
-        height: 100px;
-      }
-    }
-    @media (max-width: 768px) {
-      .hero {
-        padding: 80px 15px;
-      }
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      .hero p {
-        font-size: 0.9rem;
-      }
-      .hero .btn {
-        font-size: 0.85rem;
-      }
-      .team-member {
-        text-align: center;
-      }
-    }
-    @media (max-width: 576px) {
-      .hero {
-        padding: 60px 10px;
-      }
-      .hero h1 {
-        font-size: 1.5rem;
-      }
-      .hero p {
-        font-size: 0.8rem;
-      }
-      .hero .btn {
-        font-size: 0.8rem;
-      }
-      .section h2 {
-        font-size: 2rem;
-      }
-      .team-member img {
-        width: 80px;
-        height: 80px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="{{ url_for('home') }}">Therapy Services</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          {% if current_user.is_authenticated %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('scheduled_meetings') }}">Meetings</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-            </li>
-          {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('therapy_signup') }}">Sign Up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-            </li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
+{% extends 'base.html' %}
 
-  <!-- Hero Section -->
+{% block title %}Home - Therapy Services{% endblock %}
+
+{% block content %}
   <div class="hero">
     <div class="container">
       <h1>Welcome to Therapy Services</h1>
       <p>Your journey to healing and well-being starts here.</p>
       {% if not current_user.is_authenticated %}
-        <a href="{{ url_for('therapy_signup') }}" class="btn btn-lg">Get Started</a>
-      {% endif %}
+        <a href="{{ url_for('therapy_signup') }}" class="btn btn-lg btn-primary">Get Started</a>  {% endif %}
     </div>
   </div>
 
-  <!-- Main Content -->
   <div class="container section">
-    <!-- About Us Section -->
     <section id="about-us" class="mb-5">
       <h2>About Us</h2>
       <p>We are dedicated to providing quality therapy services to help you overcome life's challenges. Our experienced team is here to support you every step of the way.</p>
     </section>
 
-    <!-- Why Section -->
     <section id="why" class="mb-5">
       <h2>Why Choose Us?</h2>
       <p>Our holistic approach ensures personalized care tailored to your unique needs. We empower you to achieve lasting positive change.</p>
     </section>
 
-    <!-- Sign Up Section -->
     <section id="sign-up" class="mb-5">
       <h2>Sign Up Today</h2>
       <p>If you're interested in our therapy services, <a href="{{ url_for('therapy_signup') }}">click here to sign up</a> and take the first step towards a better tomorrow.</p>
     </section>
 
-    <!-- The Team Section -->
     <section id="the-team" class="mb-5">
       <h2>Meet The Team</h2>
       <div class="row">
-        <!-- Team Member 1 -->
         <div class="col-md-4 team-member">
           <img src="https://via.placeholder.com/150" alt="Jane Doe">
           <h5>Jane Doe</h5>
           <p>Licensed Therapist</p>
         </div>
-        <!-- Team Member 2 -->
         <div class="col-md-4 team-member">
           <img src="https://via.placeholder.com/150" alt="John Smith">
           <h5>John Smith</h5>
           <p>Clinical Psychologist</p>
         </div>
-        <!-- Team Member 3 -->
         <div class="col-md-4 team-member">
           <img src="https://via.placeholder.com/150" alt="Emily Johnson">
           <h5>Emily Johnson</h5>
@@ -195,7 +49,6 @@
       </div>
     </section>
 
-    <!-- Contact Us Section -->
     <section id="contact-us" class="mb-5">
       <h2>Contact Us</h2>
       <p>Have questions or need assistance? Reach out to us:</p>
@@ -207,16 +60,9 @@
     </section>
   </div>
 
-  <!-- Footer -->
   <footer class="text-center">
     <div class="container">
       <p>&copy; {{ now().year }} Therapy Services. All rights reserved.</p>
     </div>
   </footer>
-
-  <!-- Optional JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% endblock %}
