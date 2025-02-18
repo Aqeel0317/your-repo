@@ -13,11 +13,175 @@
   />
   <style>
     /* Global Font */
-    body {
-      font-family: 'Roboto', sans-serif;
-      padding-top: 70px;
+       body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
       background: linear-gradient(to bottom, #e0f7fa, #ffffff);
       transition: background 0.5s ease;
+    }
+    
+    /* Navbar Styling */
+    .navbar {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+    .navbar-brand {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    .nav-link {
+      font-size: 1rem;
+      margin: 0 5px;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover {
+      color: #ffd54f;
+    }
+    .navbar-nav {
+      text-align: center;
+    }
+    
+    /* Hero Section */
+    .hero {
+      height: 95vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1920x1080');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 20px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    }
+    .btn-primary {
+      background: #007bff;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      background: #0056b3;
+      transform: scale(1.05);
+    }
+    
+    /* Main Content Container */
+    .main-content {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+    
+    /* Section Animations */
+    .sectionn {
+      padding: 60px 15px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+      text-align: center;
+    }
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Feature Cards */
+    .feature-card {
+      background: #fff;
+      border-radius: 15px;
+      padding: 40px;
+      margin: 20px auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    /* Why Choose Us Section */
+    #why {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #why .feature-card {
+      flex: 1 1 250px;
+      margin: 20px;
+    }
+    
+    /* The Team Section */
+    #the-team .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .team-member {
+      text-align: center;
+      max-width: 250px;
+    }
+    .team-member img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #007bff;
+      transition: transform 0.3s ease;
+    }
+    .team-member img:hover {
+      transform: scale(1.1);
+    }
+    .team-member h5 {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+    .team-member p {
+      color: #555;
+      font-size: 0.95rem;
+    }
+    
+    /* Responsive Media Queries */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .hero p {
+        font-size: 1.1rem;
+      }
+      .feature-card {
+        padding: 30px;
+      }
+    }
+    @media (max-width: 576px) {
+      .hero {
+        height: 80vh;
+        padding: 20px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .btn-primary {
+        padding: 10px 20px;
+      }
+      .sectionn {
+        padding: 40px 10px;
+      }
     }
     
     /* Navbar Styling */
