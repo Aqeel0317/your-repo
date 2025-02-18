@@ -13,6 +13,42 @@
     body {
       padding-top: 70px;
     }
+    
+    /* Ensure navbar items align properly on small screens */
+    .navbar-nav {
+      text-align: center;
+    }
+
+    .navbar-brand {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    /* Make flash messages responsive */
+    .alert {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* Responsive spacing for better mobile experience */
+    .container {
+      padding: 15px;
+    }
+
+    @media (max-width: 576px) {
+      body {
+        padding-top: 60px;
+      }
+      
+      .navbar-brand {
+        font-size: 1rem;
+      }
+
+      .nav-link {
+        font-size: 0.9rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -24,7 +60,7 @@
               aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse navbar-collapse text-center" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           {% if current_user.is_authenticated %}
             <li class="nav-item">
