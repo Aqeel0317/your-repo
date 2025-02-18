@@ -570,6 +570,19 @@ def add_approved_user():
         flash("Approved user created successfully", "success")
         return redirect(url_for('admin_dashboard'))
     return render_template('add_approved_user.html')
+@app.route('/admin/therapysignups/<int:signup_id>/delete', methods=['POST'])
+@login_required
+@admin_required
+def admin_delete_therapysignup(signup_id):
+    signup = TherapySignUp.query.get_or_404(signup_id)
+    try:
+        db.session.delete(signup)
+        db.session.commit()
+        flash("Therapy sign-up deleted successfully.", "success")
+    except Exception as e:
+        db.session.rollback()
+        flash(f"Error deleting therapy sign-up: {e}", "danger")
+    return redirect(url_for('admin_therapysignups'))
 
 @app.route('/admin/add_psychologist', methods=['GET', 'POST'])
 @login_required
