@@ -29,8 +29,8 @@ for key, value in config_data.items():
 
 
 # If Railway provides DATABASE_URL, use it instead of the SQLite URI.
-if os.environ.get('DATABASE_URL'):
-    database_url = os.environ['DATABASE_URL']
+if os.environ.get('postgresql://postgres:BPJmFRPAUgJzQowHYIDBLheXHaBQSwAU@shuttle.proxy.rlwy.net:23618/railway'):
+    database_url = os.environ['postgresql://postgres:BPJmFRPAUgJzQowHYIDBLheXHaBQSwAU@shuttle.proxy.rlwy.net:23618/railway']
     # Railway may use the prefix "postgres://", but SQLAlchemy requires "postgresql://"
     if database_url.startswith("postgres://"):
         database_url = database_url.replace("postgres://", "postgresql://", 1)
