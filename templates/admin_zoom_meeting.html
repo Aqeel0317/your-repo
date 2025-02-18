@@ -3,7 +3,29 @@
 {% block title %}Join Zoom Meeting{% endblock %}
 
 {% block content %}
-  <!-- Meeting Container -->
+  <style>
+    /* Hide the navbar for the Zoom meeting page */
+    .navbar {
+      display: none;
+    }
+    /* Make the Zoom meeting container full screen */
+    #zmmtg-root {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1000;
+      background-color: #f8f9fa;
+    }
+    /* Remove container padding/margins for full screen effect */
+    .container {
+      padding: 0 !important;
+      margin-top: 0 !important;
+    }
+  </style>
+
+  <!-- Zoom Meeting Container -->
   <div id="zmmtg-root"></div>
 
   <!-- Zoom Web SDK Libraries -->
