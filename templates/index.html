@@ -5,227 +5,133 @@
 {% block head %}
   {{ super() }}
   <style>
-    /* Enhanced Styles */
-/* Enhanced Styles */
-.hero {
-  height: 95vh !important;
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800') !important;
-  transition: all 0.3s ease !important;
-}
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+    }
 
-.hero:hover {
-  background-position: center 45% !important;
-}
+    .hero {
+      height: 95vh;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800');
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      flex-direction: column;
+    }
 
-.hero h1 {
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3) !important;
-  animation: fadeInUp 1s ease !important;
-}
+    .btn-primary {
+      background: #007bff;
+      color: white;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
 
-.section {
-  padding: 100px 15px !important;
-  opacity: 0 !important;
-  transform: translateY(20px) !important;
-  transition: all 0.6s ease !important;
-}
+    .btn-primary:hover {
+      background: #0056b3;
+    }
 
-.section.visible {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
+    .container {
+      width: 80%;
+      margin: auto;
+      padding: 40px 0;
+    }
 
-.feature-card {
-  background: white !important;
-  border-radius: 15px !important;
-  padding: 30px !important;
-  margin: 20px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
-  transition: transform 0.3s ease !important;
-}
+    .section {
+      padding: 60px 15px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+      text-align: center;
+    }
 
-.feature-card:hover {
-  transform: translateY(-10px) !important;
-}
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.team-member {
-  position: relative !important;
-  overflow: hidden !important;
-  border-radius: 15px !important;
-  padding: 20px !important;
-  transition: all 0.3s ease !important;
-}
+    .feature-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      margin: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
 
-.team-member img {
-  transition: transform 0.3s ease !important;
-}
+    .team-member {
+      display: inline-block;
+      text-align: center;
+      margin: 20px;
+    }
 
-.team-member:hover img {
-  transform: scale(1.05) !important;
-}
-
-.team-member::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 4px !important;
-  background: #007bff !important;
-  transform: scaleX(0) !important;
-  transition: transform 0.3s ease !important;
-}
-
-.team-member:hover::after {
-  transform: scaleX(1) !important;
-}
-
-.contact-card {
-  background: white !important;
-  border-radius: 15px !important;
-  padding: 40px !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
-}
-
-.btn-primary {
-  transition: all 0.3s ease !important;
-  letter-spacing: 0.5px !important;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0 !important;
-    transform: translateY(20px) !important;
-  }
-  to {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-  }
-}
-
-/* Typography Enhancements */
-h2 {
-  position: relative !important;
-  padding-bottom: 15px !important;
-  margin-bottom: 40px !important;
-}
-
-h2::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: 0 !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: 60px !important;
-  height: 3px !important;
-  background: #007bff !important;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 2.8rem !important;
-  }
-  
-  .section {
-    padding: 60px 15px !important;
-  }
-}
-
+    .team-member img {
+      width: 150px;
+      border-radius: 50%;
+    }
   </style>
 {% endblock %}
 
 {% block content %}
   <div class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Therapy Services</h1>
-      <p class="lead mb-4">Your journey to healing and well-being starts here.</p>
-      {% if not current_user.is_authenticated %}
-        <a href="{{ url_for('therapy_signup') }}" class="btn btn-lg btn-primary px-5 py-3">
-          Begin Healing Journey →
-        </a>
-      {% endif %}
-    </div>
+    <h1>Welcome to Therapy Services</h1>
+    <p>Your journey to healing and well-being starts here.</p>
+    {% if not current_user.is_authenticated %}
+      <a href="{{ url_for('therapy_signup') }}" class="btn-primary">Begin Healing Journey →</a>
+    {% endif %}
   </div>
 
   <div class="container">
-    <section id="about-us" class="section">
+    <section class="section" id="about-us">
       <div class="feature-card">
         <h2>About Us</h2>
-        <p class="lead">We are dedicated to providing quality therapy services to help you overcome life's challenges. Our experienced team is here to support you every step of the way.</p>
+        <p>We are dedicated to providing quality therapy services to help you overcome life's challenges.</p>
       </div>
     </section>
 
-    <section id="why" class="section">
+    <section class="section" id="why">
       <h2>Why Choose Us?</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="feature-card h-100">
-            <h3 class="h5 mb-3">Personalized Care</h3>
-            <p>Tailored treatment plans designed specifically for your unique needs and goals.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="feature-card h-100">
-            <h3 class="h5 mb-3">Expert Team</h3>
-            <p>Licensed professionals with decades of combined experience in mental health care.</p>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="feature-card h-100">
-            <h3 class="h5 mb-3">Proven Results</h3>
-            <p>Evidence-based approaches that deliver measurable, lasting improvements.</p>
-          </div>
-        </div>
+      <div class="feature-card">
+        <h3>Personalized Care</h3>
+        <p>Tailored treatment plans designed for your unique needs.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Expert Team</h3>
+        <p>Licensed professionals with years of experience.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Proven Results</h3>
+        <p>Evidence-based approaches that deliver lasting improvements.</p>
       </div>
     </section>
 
-    <section id="the-team" class="section">
+    <section class="section" id="the-team">
       <h2>Meet The Team</h2>
-      <div class="row justify-content-center">
-        <div class="col-md-4 mb-4">
-          <div class="team-member text-center">
-            <img src="https://via.placeholder.com/160" alt="Jane Doe" class="mb-3">
-            <h5>Jane Doe</h5>
-            <p class="text-muted">Licensed Therapist</p>
-          </div>
-        </div>
-        <!-- Repeat other team members -->
+      <div class="team-member">
+        <img src="https://via.placeholder.com/150" alt="Jane Doe">
+        <h5>Jane Doe</h5>
+        <p>Licensed Therapist</p>
       </div>
-    </section>
-
-    <section id="contact-us" class="section">
-      <div class="contact-card">
-        <h2>Contact Us</h2>
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <ul class="list-unstyled text-center">
-              <li class="mb-3">
-                <i class="bi bi-envelope me-2"></i>info@example.com
-              </li>
-              <li class="mb-3">
-                <i class="bi bi-phone me-2"></i>123-456-7890
-              </li>
-              <li>
-                <i class="bi bi-geo-alt me-2"></i>123 Wellness Blvd, Suite 100
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/150" alt="John Smith">
+        <h5>John Smith</h5>
+        <p>Psychologist</p>
+      </div>
+      <div class="team-member">
+        <img src="https://via.placeholder.com/150" alt="Emily Johnson">
+        <h5>Emily Johnson</h5>
+        <p>Counselor</p>
       </div>
     </section>
   </div>
 
   <script>
-    // Simple intersection observer for scroll animations
     document.addEventListener('DOMContentLoaded', () => {
       const sections = document.querySelectorAll('.section');
-      
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
