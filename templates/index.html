@@ -2,45 +2,170 @@
 
 {% block title %}Home - Therapy Services{% endblock %}
   <style>
-    body {
-      padding-top: 70px;
-    }
-    
-    /* Ensure navbar items align properly on small screens */
-    .navbar-nav {
-      text-align: center;
-    }
+  body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif; /* Use Poppins font if linked in base.html, otherwise falls back to system default sans-serif */
+  background-color: #f4f8fb; /* Light background color */
+  color: #333; /* Dark gray text color */
+  line-height: 1.6; /* Improved line height for readability */
+}
 
-    .navbar-brand {
-      font-size: 1.2rem;
-      font-weight: bold;
-    }
+a {
+  text-decoration: none; /* Remove underlines from links */
+  color: #007bff; /* Default link color (Bootstrap primary blue - adjust if needed) */
+}
 
-    /* Make flash messages responsive */
-    .alert {
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-    }
+a:hover {
+  color: #0056b3; /* Darker blue on hover */
+  text-decoration: underline; /* Add underline on hover for link indication */
+}
 
-    /* Responsive spacing for better mobile experience */
-    .container {
-      padding: 15px;
-    }
+/* Navbar Styles */
+.navbar {
+  background-color: #fff; /* White navbar background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for navbar */
+  padding: 1rem 0; /* Add padding to navbar */
+}
 
-    @media (max-width: 576px) {
-      body {
-        padding-top: 60px;
-      }
-      
-      .navbar-brand {
-        font-size: 1rem;
-      }
+.navbar-brand {
+  font-weight: 600; /* Make navbar brand slightly bolder */
+}
 
-      .nav-link {
-        font-size: 0.9rem;
-      }
-    }
+/* Hero Section Styles */
+.hero {
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1920x600') center center no-repeat; /* Background image with dark overlay */
+  background-size: cover;
+  padding: 120px 20px; /* Increased padding for hero section */
+  text-align: center;
+  color: #fff; /* White text color in hero section */
+}
+
+.hero h1 {
+  font-size: 2.8rem; /* Slightly larger hero heading */
+  margin-bottom: 15px; /* Spacing below hero heading */
+}
+
+.hero p {
+  font-size: 1.3rem; /* Slightly larger hero paragraph */
+  margin-bottom: 30px; /* Spacing below hero paragraph */
+  font-weight: 400; /* Regular font weight for paragraph */
+}
+
+.hero .btn-primary {
+  padding: 12px 30px; /* Larger padding for hero button */
+  font-size: 1.1rem; /* Slightly larger font size for hero button */
+  border: none; /* Remove button border */
+}
+
+/* Section Styles (for About Us, Why Choose Us, etc.) */
+.section {
+  padding: 60px 15px; /* Increased padding for sections */
+}
+
+.section h2 {
+  font-size: 2.4rem; /* Larger section headings */
+  color: #212529; /* Slightly darker heading color (Bootstrap dark gray) */
+  margin-bottom: 25px; /* Spacing below section headings */
+  font-weight: 600; /* Semi-bold section headings */
+}
+
+.section p {
+  color: #495057; /* Slightly lighter paragraph color (Bootstrap gray) */
+}
+
+/* Team Member Section Styles */
+.team-member {
+  margin-bottom: 30px; /* Spacing below each team member block */
+}
+
+.team-member img {
+  width: 150px; /* Slightly larger team member images */
+  height: 150px;
+  border-radius: 50%; /* Make team member images circular */
+  margin-bottom: 15px; /* Spacing below team member images */
+  object-fit: cover; /* Ensure images cover the circle area */
+}
+
+.team-member h5 {
+  font-size: 1.1rem; /* Slightly larger team member names */
+  font-weight: 600; /* Semi-bold team member names */
+  margin-bottom: 5px; /* Spacing below team member names */
+}
+
+.team-member p {
+  font-size: 1rem; /* Slightly larger team member titles */
+  color: #6c757d; /* Muted color for team member titles (Bootstrap muted gray) */
+}
+
+/* Footer Styles */
+footer {
+  background-color: #e9ecef; /* Light gray footer background (Bootstrap light gray) */
+  padding: 20px 0; /* Increased padding for footer */
+  color: #6c757d; /* Muted text color for footer */
+  text-align: center;
+}
+
+/* Responsive Design Adjustments (Media Queries) */
+@media (max-width: 992px) {
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+  .hero p {
+    font-size: 1.1rem;
+  }
+  .hero .btn-primary {
+    font-size: 1rem;
+  }
+  .team-member img {
+    width: 130px;
+    height: 130px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 15px;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .hero .btn-primary {
+    font-size: 0.9rem;
+  }
+  .team-member {
+    text-align: center; /* Center align team member content on smaller screens */
+  }
+  .team-member img {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding: 80px 10px;
+  }
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+  .hero p {
+    font-size: 0.9rem;
+  }
+  .hero .btn-primary {
+    font-size: 0.85rem;
+  }
+  .section h2 {
+    font-size: 2.2rem;
+  }
+  .team-member img {
+    width: 90px;
+    height: 90px;
+  }
+}
   </style>
 {% block content %}
   <div class="hero">
