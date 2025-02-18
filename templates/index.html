@@ -6,135 +6,137 @@
   {{ super() }}
   <style>
     /* Enhanced Styles */
-    .hero {
-      height: 95vh;
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800');
-      transition: all 0.3s ease;
-    }
+/* Enhanced Styles */
+.hero {
+  height: 95vh !important;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://via.placeholder.com/1920x800') !important;
+  transition: all 0.3s ease !important;
+}
 
-    .hero:hover {
-      background-position: center 45%;
-    }
+.hero:hover {
+  background-position: center 45% !important;
+}
 
-    .hero h1 {
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-      animation: fadeInUp 1s ease;
-    }
+.hero h1 {
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3) !important;
+  animation: fadeInUp 1s ease !important;
+}
 
-    .section {
-      padding: 100px 15px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-    }
+.section {
+  padding: 100px 15px !important;
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: all 0.6s ease !important;
+}
 
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.section.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
 
-    .feature-card {
-      background: white;
-      border-radius: 15px;
-      padding: 30px;
-      margin: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      transition: transform 0.3s ease;
-    }
+.feature-card {
+  background: white !important;
+  border-radius: 15px !important;
+  padding: 30px !important;
+  margin: 20px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  transition: transform 0.3s ease !important;
+}
 
-    .feature-card:hover {
-      transform: translateY(-10px);
-    }
+.feature-card:hover {
+  transform: translateY(-10px) !important;
+}
 
-    .team-member {
-      position: relative;
-      overflow: hidden;
-      border-radius: 15px;
-      padding: 20px;
-      transition: all 0.3s ease;
-    }
+.team-member {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 15px !important;
+  padding: 20px !important;
+  transition: all 0.3s ease !important;
+}
 
-    .team-member img {
-      transition: transform 0.3s ease;
-    }
+.team-member img {
+  transition: transform 0.3s ease !important;
+}
 
-    .team-member:hover img {
-      transform: scale(1.05);
-    }
+.team-member:hover img {
+  transform: scale(1.05) !important;
+}
 
-    .team-member::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: #007bff;
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-    }
+.team-member::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 4px !important;
+  background: #007bff !important;
+  transform: scaleX(0) !important;
+  transition: transform 0.3s ease !important;
+}
 
-    .team-member:hover::after {
-      transform: scaleX(1);
-    }
+.team-member:hover::after {
+  transform: scaleX(1) !important;
+}
 
-    .contact-card {
-      background: white;
-      border-radius: 15px;
-      padding: 40px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    }
+.contact-card {
+  background: white !important;
+  border-radius: 15px !important;
+  padding: 40px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+}
 
-    .btn-primary {
-      transition: all 0.3s ease;
-      letter-spacing: 0.5px;
-    }
+.btn-primary {
+  transition: all 0.3s ease !important;
+  letter-spacing: 0.5px !important;
+}
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-    }
+.btn-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15) !important;
+}
 
-    /* Animations */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+  }
+  to {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+}
 
-    /* Typography Enhancements */
-    h2 {
-      position: relative;
-      padding-bottom: 15px;
-      margin-bottom: 40px;
-    }
+/* Typography Enhancements */
+h2 {
+  position: relative !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 40px !important;
+}
 
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 3px;
-      background: #007bff;
-    }
+h2::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 60px !important;
+  height: 3px !important;
+  background: #007bff !important;
+}
 
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-      
-      .section {
-        padding: 60px 15px;
-      }
-    }
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.8rem !important;
+  }
+  
+  .section {
+    padding: 60px 15px !important;
+  }
+}
+
   </style>
 {% endblock %}
 
