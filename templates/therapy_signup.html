@@ -32,10 +32,10 @@
             <label for="email" class="form-label">Email Address</label>
             <input type="email" name="email" id="email" class="form-control" required>
           </div>
-          <div class="mb-3">
-            <label for="phone_number" class="form-label">Phone Number (Include Country Code)</label>
-            <input type="text" name="phone_number" id="phone_number" class="form-control" required>
-          </div>
+  <div class="mb-3">
+        <label for="phone_number">Phone Number</label>
+        <input type="tel" name="phone_number" id="phone_number" class="form-control" required>
+      </div>
           <div class="mb-3">
             <label for="reason" class="form-label">Why are you looking for therapy services?</label>
             <textarea name="reason" id="reason" class="form-control" rows="4" required></textarea>
@@ -58,7 +58,21 @@
     </div>
   </div>
 </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+  <script>
+    const phoneInputField = document.querySelector("#phone_number");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+      initialCountry: "auto",
+      geoIpLookup: function(callback) {
+        // Replace <YOUR_TOKEN_HERE> with your ipinfo.io token for automatic country detection.
+        fetch('https://ipinfo.io/json?token=<YOUR_TOKEN_HERE>')
+          .then(resp => resp.json())
+          .then(data => callback(data.country))
+          .catch(() => callback('us'));
+      },
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+    });
+  </script>
 <script>
   function togglePassword() {
     let password = document.getElementById("password");
